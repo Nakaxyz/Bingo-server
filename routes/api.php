@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GenerateSheetController;
 use App\Http\Controllers\RamdomNumberController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,9 +17,11 @@ use App\Http\Controllers\RamdomNumberController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::middleware(['middleware' => 'api'])->group(function () {
     Route::get('/sheet', [GenerateSheetController::class, 'index']);
+    Route::post('/number', [RamdomNumberController::class, 'index']);
+});
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });

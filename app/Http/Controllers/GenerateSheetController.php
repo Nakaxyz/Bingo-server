@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 class GenerateSheetController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $nums_range = range(1, 99);
-        $rand_keys = array_rand($nums_range, 24);
-        shuffle($rand_keys);
-        return $rand_keys;
+        shuffle($nums_range);
+        $bingo_range = array_splice($nums_range, 0, 24);
+        array_splice($bingo_range, 12, 0, ''); // ビンゴシートの中央の空白
+        return $bingo_range;
     }
-
 }
